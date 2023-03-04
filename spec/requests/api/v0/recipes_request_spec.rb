@@ -23,10 +23,9 @@ describe 'Recipes API' do
          to_return(status: 200, body: json_response, headers: {})
     get '/api/v0/recipes?country=thailand'
     recipes = JSON.parse(response.body, symbolize_names: true)
-
     expect(response).to be_successful
     expect(response.status).to eq 200
-    expect(recipes).to have_key([:data])
+    expect(recipes).to have_key(:data)
     expect(recipes[:data]).to be_a Array
   end 
 end
