@@ -54,10 +54,22 @@ describe 'Recipes API' do
         expect(recipes).to have_key(:data)
         expect(recipes[:data]).to be_a Array
       end
-
-      it 'sends an empy data collection when no results found' do
-        
-      end
+    end
+  end
+  
+  context 'sad path' do
+    it 'sends an empty data collection if country is empty string' do
+      get '/api/v0/recipes?country=' 
+      recipes = JSON.parse(response.body, symbolize_names: true)
+              
+      expect(response).to be_successful
+      expect(response.status).to eq 200
+      expect(recipes).to have_key(:data)
+      expect(recipes[:data]).to be_a Array
+      expect(recipes[:data].empty?).to be true
+    end
+    
+    it 'sends an empty data collection if no recipes found' do
     end
   end
 end
