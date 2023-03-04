@@ -24,7 +24,28 @@ describe 'Recipes API' do
 
     context 'no country search query' do
       it 'sends a list of recipes from a random country' do
-        get '/api/v0/recipes?country=' 
+        allow(RecipesFacade).to receive(:random).and_return('angola')
+
+        json_response_angola = File.open("./spec/fixtures/recipes_angola.json")
+        stub_request(:get, "https://api.edamam.com/api/recipes/v2?app_id=#{ENV['app_id']}&app_key=#{ENV['app_key']}&q=angola&type=public").
+            with(
+              headers: {
+              'Accept'=>'*/*',
+              'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+              'User-Agent'=>'Faraday v2.7.4'
+              }).
+            to_return(status: 200, body: json_response_angola, headers: {}) 
+
+        json_response = File.open("./spec/fixtures/all_countries.json")
+        stub_request(:get, "https://restcountries.com/v3.1/all").
+        with(
+          headers: {
+          'Accept'=>'*/*',
+          'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+          'User-Agent'=>'Faraday v2.7.4'
+          }).
+        to_return(status: 200, body: json_response, headers: {})
+        get '/api/v0/recipes' 
         recipes = JSON.parse(response.body, symbolize_names: true)
 
               

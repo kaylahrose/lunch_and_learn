@@ -24,10 +24,19 @@ RSpec.describe RecipesFacade do
   end
   
   context 'helper methods' do
-    it '#random_country' do
-      country = RecipesFacade.random_country
+    it '#random' do
+      json_response = File.open("./spec/fixtures/all_countries.json")
+      stub_request(:get, "https://restcountries.com/v3.1/all").
+      with(
+        headers: {
+        'Accept'=>'*/*',
+        'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+        'User-Agent'=>'Faraday v2.7.4'
+        }).
+      to_return(status: 200, body: json_response, headers: {})
+      country = RecipesFacade.random
 
-      expect(country).to eq("angola")
+      expect(country).to be_a String
     end
   end
 end

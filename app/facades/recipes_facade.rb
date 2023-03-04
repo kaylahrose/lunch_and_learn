@@ -1,5 +1,6 @@
 class RecipesFacade
-  def self.get_recipes(country = random)
+  def self.get_recipes(country)
+    country ||= RecipesFacade.random
     recipes = RecipesService.get_recipes(country)
     recipes.map do |recipe|
       Recipe.new(recipe, country)
