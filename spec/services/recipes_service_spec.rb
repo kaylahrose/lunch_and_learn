@@ -13,7 +13,7 @@ RSpec.describe RecipesService do
          to_return(status: 200, body: json_response, headers: {})
     query = "thailand"
     recipes = RecipesService.get_recipes(query)
-    # recipes = JSON.parse(response.body, symbolize_names: true)
+    
     expect(recipes).to be_a Array
   end
 end
