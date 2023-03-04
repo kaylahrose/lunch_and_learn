@@ -25,6 +25,7 @@ RSpec.describe RecipesFacade do
   
   context 'helper methods' do
     it '#random' do
+      country = nil
       json_response = File.open("./spec/fixtures/all_countries.json")
       stub_request(:get, "https://restcountries.com/v3.1/all").
       with(
@@ -34,7 +35,7 @@ RSpec.describe RecipesFacade do
         'User-Agent'=>'Faraday v2.7.4'
         }).
       to_return(status: 200, body: json_response, headers: {})
-      country = RecipesFacade.random
+      country = RecipesFacade.random(country)
 
       expect(country).to be_a String
     end
