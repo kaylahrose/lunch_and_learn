@@ -61,7 +61,7 @@ describe 'Recipes API' do
     it 'sends an empty data collection if country is empty string' do
       get '/api/v0/recipes?country=' 
       recipes = JSON.parse(response.body, symbolize_names: true)
-              
+      
       expect(response).to be_successful
       expect(response.status).to eq 200
       expect(recipes).to have_key(:data)
