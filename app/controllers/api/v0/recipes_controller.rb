@@ -5,7 +5,7 @@ class Api::V0::RecipesController < ApplicationController
     #   faraday.headers["app_key"] = ENV["app_key"]
     # end
 
-    conn = Faraday.new(url: "https://api.edamam.com")
+    # conn = Faraday.new(url: "https://api.edamam.com")
     
     # response = conn.get("/api/recipes/v2?type=public&q=#{params[:country]}")
     response = conn.get("/api/recipes/v2?type=public&q=thailand&app_id=4cb8d331&app_key=%20431a661eb4d1e63f433650caca60822e")
