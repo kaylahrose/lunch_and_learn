@@ -22,4 +22,12 @@ RSpec.describe RecipesFacade do
     expect(recipes.first.country).to be_a String
     expect(recipes.first.image).to be_a String
   end
+  
+  context 'helper methods' do
+    it '#random_country' do
+      country = RecipesFacade.random_country
+
+      expect(country).to eq("angola")
+    end
+  end
 end
