@@ -4,7 +4,7 @@ RSpec.describe RecipesFacade do
   it 'returns recipe data' do
     json_response = File.open("./spec/fixtures/recipes_thailand.json")
 
-    stub_request(:get, "https://api.edamam.com/api/recipes/v2?app_id=4cb8d331&app_key=431a661eb4d1e63f433650caca60822e&q=thailand&type=public").
+    stub_request(:get, "https://api.edamam.com/api/recipes/v2?app_id=#{ENV['app_id']}&app_key=#{ENV['app_key']}&q=thailand&type=public").
          with(
            headers: {
        	  'Accept'=>'*/*',
