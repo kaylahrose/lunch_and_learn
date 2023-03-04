@@ -1,6 +1,6 @@
 class RecipesFacade
-  def self.get_recipes(query)
-    response = RecipesService.get_recipes(query)
+  def self.get_recipes(country)
+    response = RecipesService.get_recipes(country)
     recipes = JSON.parse(response.body, symbolize_names: true)[:hits]
     recipes.map do |recipe|
       Recipe.new(recipe)
