@@ -6,8 +6,7 @@ class RecipesFacade
     end
   end
 
-  def self.random_country
-    response = CountriesService.get_country
-    
+  def self.random
+    CountriesService.random_country[:name][:common]
   end
 end
