@@ -3,7 +3,7 @@ class RecipesFacade
     response = RecipesService.get_recipes(country)
     recipes = JSON.parse(response.body, symbolize_names: true)[:hits]
     recipes.map do |recipe|
-      Recipe.new(recipe)
+      Recipe.new(recipe, country)
     end
   end
 end
