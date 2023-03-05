@@ -1,6 +1,6 @@
 class Api::V0::RecipesController < ApplicationController
   def index
-    if params[:country].blank?
+    if params[:country] == ""
       recipes = RecipesFacade.get_recipes(params[:country])
     else
       recipes = []
