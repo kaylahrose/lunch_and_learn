@@ -70,6 +70,15 @@ describe 'Recipes API' do
     end
     
     it 'sends an empty data collection if no recipes found' do
+      get '/api/v0/recipes?country=sjf;lakj;lkasnvk' 
+
+      recipes = JSON.parse(response.body, symbolize_names: true)
+      
+      expect(response).to be_successful
+      expect(response.status).to eq 200
+      expect(recipes).to have_key(:data)
+      expect(recipes[:data]).to be_a Array
+      expect(recipes[:data].empty?).to be true
     end
   end
 end
