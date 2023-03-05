@@ -59,6 +59,17 @@ describe 'Recipes API' do
   
   context 'sad path' do
     it 'sends an empty data collection if country is empty string' do
+      json_response = File.open("./spec/fixtures/no_recipes.json")
+
+      stub_request(:get, "https://api.edamam.com/api/recipes/v2?app_id=4cb8d331&app_key=431a661eb4d1e63f433650caca60822e&q=&type=public").
+      with(
+        headers: {
+        'Accept'=>'*/*',
+        'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+        'User-Agent'=>'Faraday v2.7.4'
+        }).
+      to_return(status: 200, body: json_response, headers: {})
+
       get '/api/v0/recipes?country=' 
       recipes = JSON.parse(response.body, symbolize_names: true)
       
@@ -70,6 +81,16 @@ describe 'Recipes API' do
     end
     
     it 'sends an empty data collection if no recipes found' do
+      json_response = File.open("./spec/fixtures/no_recipes.json")
+
+      stub_request(:get, "https://api.edamam.com/api/recipes/v2?app_id=4cb8d331&app_key=431a661eb4d1e63f433650caca60822e&q=sjf&type=public").
+      with(
+        headers: {
+        'Accept'=>'*/*',
+        'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+        'User-Agent'=>'Faraday v2.7.4'
+        }).
+      to_return(status: 200, body: json_response, headers: {})
       get '/api/v0/recipes?country=sjf;lakj;lkasnvk' 
 
       recipes = JSON.parse(response.body, symbolize_names: true)

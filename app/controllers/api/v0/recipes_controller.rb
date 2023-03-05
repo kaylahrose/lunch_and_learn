@@ -1,9 +1,9 @@
 class Api::V0::RecipesController < ApplicationController
   def index
-    unless params[:country] == ""
+    if params[:country].blank?
       recipes = RecipesFacade.get_recipes(params[:country])
     else
-      return render json: {"data": []}
+      recipes = []
     end
     render json: RecipeSerializer.new(recipes)
   end
