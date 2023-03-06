@@ -25,8 +25,6 @@ RSpec.describe 'tourist sights API' do
         }).
       to_return(status: 200, body: france_tourist_sights, headers: {})
 
-  
-
       get '/api/v1/tourist_sights?country=France'
       tourist_sights = JSON.parse(response.body, symbolize_names: true)
 
