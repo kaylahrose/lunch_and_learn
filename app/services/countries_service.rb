@@ -10,7 +10,6 @@ class CountriesService
 
   def self.get_lat_lng(country)
     response = conn.get("v3.1/name/#{country}")
-    data = JSON.parse(response.body, symbolize_names: true)
-    country = Country.new(data)
+    data = JSON.parse(response.body, symbolize_names: true).first[:latlng]
   end
 end

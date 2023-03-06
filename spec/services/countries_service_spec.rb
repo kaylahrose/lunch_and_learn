@@ -30,8 +30,8 @@ RSpec.describe CountriesService do
     to_return(status: 200, body: json_response, headers: {})
 
     country = CountriesService.get_lat_lng("France")
-    expect(country).to be_a Country
-    expect(country.latitude).to eq(46.0)
-    expect(country.longitude).to eq(2.0)
+    expect(country).to be_a Array
+    expect(country[0]).to eq(46.0)
+    expect(country[1]).to eq(2.0)
   end
 end

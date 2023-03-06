@@ -1,7 +1,7 @@
 class TouristSightsFacade
   def self.get_tourist_sights(country)
-    country = CountriesService.get_lat_lng(country)
-    data = PlacesService.get_tourist_sights(country)
+    lat_lng = CountriesService.get_lat_lng(country)
+    data = PlacesService.get_tourist_sights(*lat_lng)
     create_tourist_sights(data)
   end
 
