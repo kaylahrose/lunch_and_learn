@@ -7,4 +7,10 @@ class CountriesService
     response = conn.get("/v3.1/all")
     JSON.parse(response.body, symbolize_names: true).sample
   end
+
+  def self.get_lat_lng(country)
+    response = conn.get("v3.1/name/#{country}")
+    data = JSON.parse(response.body, symbolize_names: true)
+    country = Country.new(data)
+  end
 end
