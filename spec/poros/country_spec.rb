@@ -7,7 +7,9 @@ RSpec.describe Country do
     france = Country.new(data)
 
     expect(france).to be_a Country
+    expect(france.name).to eq("France")
     expect(france.latitude).to eq(46.0)
     expect(france.longitude).to eq(2.0)
+    expect(france.instance_variables).to eq([:@name, :@latitude, :@longitude])
   end
 end
