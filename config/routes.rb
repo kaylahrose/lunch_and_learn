@@ -9,5 +9,8 @@ Rails.application.routes.draw do
       # TODO: nested namespace?
       resources :recipes, only: [:index]
     end 
+    namespace :v1 do
+      resources :tourist_sights, only: [:index]
+    end
   end
 end
