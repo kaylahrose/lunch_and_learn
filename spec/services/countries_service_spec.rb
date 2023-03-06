@@ -17,4 +17,21 @@ RSpec.describe CountriesService do
     expect(country).to be_a Hash
     expect(country).to have_key(:name)
   end
+
+  it '#get_lat_lng' do
+    json_response = File.open("./spec/fixtures/france_details.json")
+    stub_request(:get, "https://restcountries.com/v3.1/name/France").
+    with(
+      headers: {
+      'Accept'=>'*/*',
+      'Accept-Encoding'=>'gzip;q=1.0,deflate;q=0.6,identity;q=0.3',
+      'User-Agent'=>'Faraday v2.7.4'
+      }).
+    to_return(status: 200, body: json_response, headers: {})
+
+    country = CountriesService.get_lat_lng("France")
+    expect(country).to be_a Country
+    expect(country.latitude).to eq(46.0)
+    expect(country.longitude).to eq(2.0)
+  end
 end
