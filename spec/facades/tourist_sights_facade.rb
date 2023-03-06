@@ -27,4 +27,13 @@ RSpec.describe TouristSightsFacade do
     expect(tourist_sights).to be_a Array
     expect(tourist_sights.first).to be_a TouristSight
   end
+
+  it '#create_tourist_sights' do
+    france_tourist_sights = File.read("./spec/fixtures/france_tourist_sights.json")  
+    data = JSON.parse(france_tourist_sights, symbolize_names: true)
+    tourist_sights = TouristSightsFacade.create_tourist_sights(data)
+
+    expect(tourist_sights).to be_a Array
+    expect(tourist_sights.first).to be_a TouristSight
+  end
 end
