@@ -10,7 +10,7 @@ Rails.application.routes.draw do
       resources :recipes, only: [:index]
       resources :learning_resources, only: [:index]
       resources :users, only: [:index, :create]
-      resources :favorites, only: [:create]
+      resources :favorites, only: [:index, :create]
     end 
   end
 end
