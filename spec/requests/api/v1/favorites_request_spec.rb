@@ -13,6 +13,8 @@ RSpec.describe 'POST /api/v1/favorites' do
     post '/api/v1/favorites', params: params
     
     expect(response.status).to eq(201)
+    message = JSON.parse(response.body, symbolize_names: true)
+    
     expect(message[:success]).to eq("Favorite added successfully")
   end
 end
