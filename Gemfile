@@ -47,6 +47,7 @@ group :development, :test do
   gem 'faker'
   gem 'rubocop'
   gem 'pry'
+  gem 'shoulda-matchers'
 end
 
 group :test do
