@@ -13,7 +13,7 @@ describe 'Recipes API' do
             }).
           to_return(status: 200, body: json_response, headers: {})
 
-      get '/api/v0/recipes?country=thailand'
+      get '/api/v1/recipes?country=thailand'
       recipes = JSON.parse(response.body, symbolize_names: true)
       
       expect(response).to be_successful
@@ -45,7 +45,7 @@ describe 'Recipes API' do
           'User-Agent'=>'Faraday v2.7.4'
           }).
         to_return(status: 200, body: json_response, headers: {})
-        get '/api/v0/recipes' 
+        get '/api/v1/recipes' 
         recipes = JSON.parse(response.body, symbolize_names: true)
 
               
@@ -70,7 +70,7 @@ describe 'Recipes API' do
         }).
       to_return(status: 200, body: json_response, headers: {})
 
-      get '/api/v0/recipes?country=' 
+      get '/api/v1/recipes?country=' 
       recipes = JSON.parse(response.body, symbolize_names: true)
       
       expect(response).to be_successful
@@ -91,7 +91,7 @@ describe 'Recipes API' do
         'User-Agent'=>'Faraday v2.7.4'
         }).
       to_return(status: 200, body: json_response, headers: {})
-      get '/api/v0/recipes?country=sjf;lakj;lkasnvk' 
+      get '/api/v1/recipes?country=sjf;lakj;lkasnvk' 
 
       recipes = JSON.parse(response.body, symbolize_names: true)
       

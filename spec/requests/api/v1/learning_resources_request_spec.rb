@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'GET /api/v0/learning_resources' do
+RSpec.describe 'GET /api/v1/learning_resources' do
   it 'sends learning data for a country' do
     # WebMock.allow_net_connect!
     laos_videos = File.open("./spec/fixtures/laos_videos.json")
@@ -24,7 +24,7 @@ RSpec.describe 'GET /api/v0/learning_resources' do
         }).
         to_return(status: 200, body: laos_photos, headers: {})
         
-    get '/api/v0/learning_resources?country=laos'
+    get '/api/v1/learning_resources?country=laos'
     resource = JSON.parse(response.body, symbolize_names: true)
     
     expect(response).to be_successful
@@ -59,7 +59,7 @@ RSpec.describe 'GET /api/v0/learning_resources' do
     to_return(status: 200, body: photos, headers: {})
 
 
-    get '/api/v0/learning_resources?country=lslkjaf'
+    get '/api/v1/learning_resources?country=lslkjaf'
     resource = JSON.parse(response.body, symbolize_names: true)
     
     expect(response).to be_successful
