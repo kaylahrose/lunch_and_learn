@@ -7,4 +7,8 @@ class LearningResource
     @video = video
     @images = images
   end
+
+  def format(resour)
+    require 'pry'; binding.pry
+  end
 end
