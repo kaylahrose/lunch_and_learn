@@ -4,8 +4,7 @@ class LearningResource
     # require 'pry'; binding.pry
     @id = nil
     @country = country
-    @video = {title: video[:items].first[:snippet][:title],
-              youtube_video_id: video[:items].first[:id][:videoId]}
+    @video = video
     @images = images
   end
 end
