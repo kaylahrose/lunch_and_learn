@@ -1,10 +1,10 @@
 class ErrorSerializer
-  def self.record_invalid(error)
+  def self.active_record_error(message, code)
     {
       errors: [
         {
-          title: error.message,
-          status: "400"
+          title: message,
+          status: code
         }
       ]
     }
