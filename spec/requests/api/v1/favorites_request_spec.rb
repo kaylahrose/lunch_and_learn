@@ -37,10 +37,21 @@ RSpec.describe '/api/v1/favorites' do
   
   it 'gets all users favorites' do
     user = User.create!(name: 'test', email: 'test', api_key: "1234")
-    2.times { user.favorites.create!(country: Faker::Lorem, recipe_link: Faker::Lorem, recipe_title: Faker::Lorem)}
-
+    2.times { user.favorites.create!(country: "Thailand", recipe_link: "1234", recipe_title: "1234")}
     get '/api/v1/favorites?api_key=1234'
+    favorites = JSON.parse(response.body, symbolize_names: true)
 
+    expect(response.status).to eq(200)
+    expect(favorites[:data].count).to eq(2)
+    expect(favorites[:data].first[:type]).to eq("favorite")
+  end
 
+  it 'returns and empty array when no favorites found' do
+    user = User.create!(name: 'test', email: 'test', api_key: "1234")
+    get '/api/v1/favorites?api_key=1234'
+    favorites = JSON.parse(response.body, symbolize_names: true)
+
+    expect(response.status).to eq(200)
+    expect(favorites[:data]).to eq([]) 
   end
 end
