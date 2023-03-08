@@ -20,6 +20,12 @@ describe 'Recipes API' do
       expect(response.status).to eq 200
       expect(recipes).to have_key(:data)
       expect(recipes[:data]).to be_a Array
+      expect(recipes[:data][0][:id]).to eq(nil)
+      expect(recipes[:data][0][:type]).to eq("recipe")
+      expect(recipes[:data][0][:attributes][:title]).to eq("Andy Ricker's Naam Cheuam Naam Taan Piip (Palm Sugar Simple Syrup)")
+      expect(recipes[:data][0][:attributes][:url]).to eq("https://www.seriouseats.com/recipes/2013/11/andy-rickers-naam-cheuam-naam-taan-piip-palm-sugar-simple-syrup.html")
+      expect(recipes[:data][0][:attributes][:country]).to eq("thailand")
+      expect(recipes[:data][0][:attributes][:image]).to be_a String
     end 
 
     context 'no country search query' do
