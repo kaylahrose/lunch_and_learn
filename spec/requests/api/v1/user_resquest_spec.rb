@@ -28,8 +28,8 @@ RSpec.describe 'POST /api/v1/users' do
       "email": "athenadao@bestgirlever.com"
     }
     post '/api/v1/users', params: params
-    
-    expect(response.status).to eq(422)
-    expect(response.body).to eq("Validation failed: Email has already been taken")
+    error = JSON.parse(response.body, symbolize_names: true)
+    expect(response.status).to eq(400)
+    expect(error[:errors][0][:title]).to eq("Validation failed: Email has already been taken")
   end
 end
