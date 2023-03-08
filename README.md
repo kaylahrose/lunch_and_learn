@@ -1,4 +1,15 @@
 # Lunch and Learn API
+[![forthebadge](https://forthebadge.com/images/badges/made-with-ruby.svg)](https://forthebadge.com)
+[![forthebadge](https://forthebadge.com/images/badges/powered-by-coffee.svg)](https://forthebadge.com)
+
+This API was built according to the project specifications [here](https://backend.turing.edu/module3/projects/lunch_and_learn/requirements).
+
+## Goals
+- Expose an API that aggregates data from multiple external APIs
+- Expose an API that requires an authentication token
+- Expose an API for CRUD functionality
+- Determine completion criteria based on the needs of other developers
+- Test both API consumption and exposure, making use of at least one mocking tool (VCR, Webmock, etc).
 
 ## RESTful Endpoints
 
